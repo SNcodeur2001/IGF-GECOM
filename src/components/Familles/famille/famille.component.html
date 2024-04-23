@@ -1,0 +1,64 @@
+<div class="container mx-auto p-4">
+  <!-- Barre de recherche -->
+  <div class="mb-4 d-flex flex-column flex-md-row justify-content-between align-items-center mt-7">
+    <div class="mb-2 mb-md-0">
+      <a routerLink="/ajout-famille" class="btn btn-outline-primary">
+        <i class="fas fa-plus me-1"></i>
+        Ajouter
+      </a>
+    </div>
+    <div class="position-relative">
+      <input type="text" placeholder="Rechercher..." class="form-control border border-gray-300 rounded-md p-2 w-full md:w-72">
+      <i class="position-absolute top-0 end-0 fas fa-search text-gray-400 mt-2 me-3"></i>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 text-center mt-12">Liste des familles</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="bg-dark text-white">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+            Code
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+            Intitulé
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+            Unité de vente
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+            Suivi de stock
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let famille of familles">
+          <td class="px-6 py-4">
+            <div class="text-sm text-gray-900">{{ famille.code }}</div>
+          </td>
+          <td class="px-6 py-4">
+            <div class="text-sm text-gray-900">{{ famille.intitule }}</div>
+          </td>
+          <td class="px-6 py-4">
+            <div class="text-sm text-gray-900">{{ famille.unite_de_vente }}</div>
+          </td>
+          <td class="px-6 py-4">
+            <div class="text-sm text-gray-900">{{ famille.suivi_stock }}</div>
+          </td>
+          <td class="px-6 py-4">
+            <button class="btn btn-outline-primary me-3">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="btn btn-outline-danger" (click)="deleteFamille(famille.id)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
