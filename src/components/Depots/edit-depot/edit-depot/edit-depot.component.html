@@ -1,0 +1,92 @@
+<div class="max-w-md mx-auto mt-12">
+  <h2 class="text-2xl font-bold mb-4 text-center mt-12 underline">Modification d'un depôt</h2>
+  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" (ngSubmit)="updateDepot()">
+
+    <!-- Numéro -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="numero">
+        Nom
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="numero" type="text" placeholder="Numéro" [(ngModel)]="depot.nom" name="numero">
+    </div>
+    <!-- Responsable du dépôt -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="responsableDepot">
+        Responsable du dépôt
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="responsableDepot" type="text" placeholder="Responsable du dépôt" [(ngModel)]="depot.responsable_depot" name="responsableDepot">
+    </div>
+    <!-- Adresse -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="adresse">
+        Adresse
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="adresse" type="text" placeholder="Adresse" [(ngModel)]="depot.adresse" name="adresse">
+    </div>
+    <!-- Complément -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="complement">
+        Complément
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="complement" type="text" placeholder="Complément" [(ngModel)]="depot.complement" name="complement">
+    </div>
+    <!-- Code postal -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="codePostal">
+        Code postal
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="codePostal" type="text" placeholder="Code postal" [(ngModel)]="depot.code_postal" name="codePostal">
+    </div>
+    <!-- Région -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="region">
+        Région
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="region" type="text" placeholder="Région" [(ngModel)]="depot.region" name="region">
+    </div>
+    <!-- Ville -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="ville">
+        Ville
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="ville" type="text" placeholder="Ville" [(ngModel)]="depot.ville" name="ville">
+    </div>
+    <!-- Pays -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="pays">
+        Pays
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="pays" type="text" placeholder="Pays" [(ngModel)]="depot.pays" name="pays">
+    </div>
+    <!-- Téléphone -->
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="telephone">
+        Téléphone
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="telephone" type="text" placeholder="Téléphone" [(ngModel)]="depot.telephone" name="telephone">
+    </div>
+    <!-- Email -->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+        Email
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="email" type="email" placeholder="Email" [(ngModel)]="depot.email" name="email">
+    </div>
+    <!-- Bouton Ajouter -->
+    <div class="flex items-center justify-between">
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+        Modifier
+      </button>
+    </div>
+  </form>
+</div>

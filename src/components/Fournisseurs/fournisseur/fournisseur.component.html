@@ -1,1 +1,109 @@
-<p>fournisseur works!</p>
+<div class="container mx-auto p-4">
+  <!-- Barre de recherche -->
+  <div class="mb-4 flex flex-col md:flex-row justify-between items-center mt-7">
+    <div class="mb-2 md:mb-0">
+      <button routerLink="/ajouter-fournisseurs" class="border-2 border-green-500 hover:bg-green-500 hover:text-white text-green-500 font-bold py-2 px-4 rounded">
+        <i class="fas fa-plus mr-1"></i>
+        Ajouter
+      </button>
+    </div>
+    <div class="relative">
+      <input type="text" placeholder="Rechercher..." class="border border-gray-300 rounded-md p-2 w-full md:w-72">
+      <i class="absolute right-3 top-3 fas fa-search text-gray-400"></i>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-4 text-center mt-12 underline">Liste des fournisseurs</h2>
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-800">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Compte tiers
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Intitulé
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Adresse
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Complément
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Région
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Ville
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Pays
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Téléphone
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Email
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Code postal
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            NINEA
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let fournisseur of fournisseurs">
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.compte_tiers }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.intitule }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.adresse }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.complement }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.region }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.ville }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.pays }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.telephone }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.email }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.code_postal }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ fournisseur.ninea }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+
+
+
+            <button class="text-blue-500 hover:text-blue-700 mr-7" (click)="goToEdit(fournisseur.id)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="text-red-500 hover:text-red-700" (click)="deleteFournisseur(fournisseur.id)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

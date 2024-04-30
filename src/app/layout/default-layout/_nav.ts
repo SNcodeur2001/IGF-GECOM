@@ -131,12 +131,12 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Liste des articles',
-        url: '/buttons/buttons',
+        url: '/articles',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Ajout d\'un article',
-        url: '/buttons/button-groups',
+        url: '/ajout-article',
         icon: 'nav-icon-bullet'
       },
       // {
@@ -157,12 +157,12 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Liste des fournisseurs',
-        url: '/forms/form-control',
+        url: '/fournisseur',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Ajout d\'un fournisseur',
-        url: '/forms/select',
+        url: 'ajouter-fournisseurs',
         icon: 'nav-icon-bullet'
       },
       // {
@@ -204,12 +204,12 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Liste des clients',
-        url: '/forms/form-control',
+        url: '/clients',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Ajout d\'un client',
-        url: '/forms/select',
+        url: 'ajouter-clients',
         icon: 'nav-icon-bullet'
       },
       // {
@@ -286,14 +286,14 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Mes depôts',
-        url: '/notifications/alerts',
+        url: '/depots',
         icon: 'nav-icon-bullet'
       },
-      // {
-      //   name: 'Badges',
-      //   url: '/notifications/badges',
-      //   icon: 'nav-icon-bullet'
-      // },
+      {
+        name: 'Ajouter depôt',
+        url: '/ajouter-depot',
+        icon: 'nav-icon-bullet'
+      },
       // {
       //   name: 'Modal',
       //   url: '/notifications/modal',

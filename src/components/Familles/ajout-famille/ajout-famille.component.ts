@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FamilleService } from '../../../app/services/famille-service';
+import { FamilleService } from '../../../app/services/famille/famille-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -21,12 +21,15 @@ export class AjoutFamilleComponent {
   };
 
   constructor(private familleService:FamilleService){}
+
+
   onSubmit(): void {
     this.familleService.createFamille(this.familleData)
       .subscribe(
         response => {
           console.log('Famille créée avec succès :', response);
           // Réinitialiser les données du formulaire après la création réussie
+          alert("Famille créée avec succès");
           this.resetForm();
         },
         error => {

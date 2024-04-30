@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FamilleService } from 'src/app/services/famille-service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { FamilleService } from 'src/app/services/famille/famille-service';
 
 @Component({
   selector: 'app-famille',
@@ -14,8 +14,7 @@ import { FamilleService } from 'src/app/services/famille-service';
 })
 export class FamilleComponent implements OnInit{
   familles: any[] = [];
-  constructor(private familleService:FamilleService){}
-
+  constructor(private familleService: FamilleService, private router: Router, private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.getFamille();
   }
@@ -42,5 +41,9 @@ export class FamilleComponent implements OnInit{
         }
       );
     }
+  }
+
+  goToEdit(id: number): void {
+    this.router.navigate(['/edit-famille', id], { relativeTo: this.route });
   }
 }
