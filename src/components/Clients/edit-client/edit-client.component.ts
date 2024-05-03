@@ -21,7 +21,9 @@ export class EditClientComponent {
   clientId: number=0;
   client: any = {};
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router,
+  constructor(private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router,
     private clientService: ClientService
   ) { }
 

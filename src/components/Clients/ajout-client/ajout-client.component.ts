@@ -48,9 +48,14 @@ this.resetForm();
 
 // this.router.navigate(['/clients']);
 },
-(error) => {
-console.error('Erreur lors de la création du client', error);
-// Gérer l'erreur ici, par exemple afficher un message à l'utilisateur
+error => {
+  if (error.status === 400) {
+    // Le code existe déjà dans la base de données
+    alert("Le compte tiers existe déjà dans la base de données");
+  } else {
+    // Une autre erreur s'est produite
+    console.error('Erreur lors de la création de la famille :', error);
+  }
 }
 );
 }

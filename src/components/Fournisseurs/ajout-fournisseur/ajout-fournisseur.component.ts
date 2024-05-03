@@ -49,12 +49,37 @@ this.resetForm();
 
 // this.router.navigate(['/fournisseurs']);
 },
-(error) => {
-console.error('Erreur lors de la création du fournisseur', error);
-// Gérer l'erreur ici, par exemple afficher un message à l'utilisateur
+error => {
+  if (error.status === 400) {
+    // Le code existe déjà dans la base de données
+    alert("Le compte tiers existe déjà dans la base de données");
+  } else {
+    // Une autre erreur s'est produite
+    console.error('Erreur lors de la création de la famille :', error);
+  }
 }
 );
 }
+
+onSubmitQuit() {
+  this.fournisseurService.createFournisseur(this.fournisseurData).subscribe(
+  (response) => {
+  console.log('Fournisseur créé avec succès', response);
+  alert("Fournisseur créé avec succès");
+
+  this.router.navigate(['/fournisseur']);
+  },
+  error => {
+    if (error.status === 400) {
+      // Le code existe déjà dans la base de données
+      alert("Un champ existe deja existe déjà dans la base de données");
+    } else {
+      // Une autre erreur s'est produite
+      console.error('Erreur lors de la création de la famille :', error);
+    }
+  }
+  );
+  }
 
 resetForm(): void {
   this.fournisseurData = {

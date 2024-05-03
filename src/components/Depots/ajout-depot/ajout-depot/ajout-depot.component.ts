@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DepotService } from 'src/app/services/depot/depot-service';
 
 @Component({
@@ -28,7 +28,9 @@ export class AjoutDepotComponent {
     telephone: '',
     email:''
   };
-  constructor(private depotService: DepotService) { }
+  constructor(private depotService: DepotService,
+              private router : Router
+  ) { }
 
   onSubmit(): void {
     this.depotService.createDepot(this.depotData)
@@ -36,6 +38,22 @@ export class AjoutDepotComponent {
         response => {
           console.log('depot créée avec succès :', response);
           alert("depot créée avec succès :")
+          // Réinitialiser les données du formulaire après la création réussie
+          this.resetForm();
+        },
+        error => {
+          console.error('Erreur lors de la création du depot :', error);
+        }
+      );
+  }
+
+  onSubmitQuit(): void {
+    this.depotService.createDepot(this.depotData)
+      .subscribe(
+        response => {
+          console.log('depot créée avec succès :', response);
+          alert("depot créée avec succès :")
+          this.router.navigate(['/depots'])
           // Réinitialiser les données du formulaire après la création réussie
           this.resetForm();
         },

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FamilleService } from '../../../app/services/famille/famille-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajout-famille',
@@ -20,7 +21,10 @@ export class AjoutFamilleComponent {
     suivi_stock: ''
   };
 
-  constructor(private familleService:FamilleService){}
+  constructor(private familleService:FamilleService,
+              private router: Router,
+
+  ){}
 
 
   onSubmit(): void {
@@ -33,12 +37,38 @@ export class AjoutFamilleComponent {
           this.resetForm();
         },
         error => {
-          console.error('Erreur lors de la création de la famille :', error);
+          if (error.status === 400) {
+            // Le code existe déjà dans la base de données
+            alert("Le code famille existe déjà dans la base de données");
+          } else {
+            // Une autre erreur s'est produite
+            console.error('Erreur lors de la création de la famille :', error);
+          }
         }
       );
-      // console.log("Je suis là");
-
   }
+
+  onSubmitQuit(): void {
+    this.familleService.createFamille(this.familleData)
+      .subscribe(
+        response => {
+          console.log('Famille créée avec succès :', response);
+          // Réinitialiser les données du formulaire après la création réussie
+          alert("Famille créée avec succès");
+          this.router.navigate(['/familles']);
+        },
+        error => {
+          if (error.status === 400) {
+            // Le code existe déjà dans la base de données
+            alert("Le code famille existe déjà dans la base de données");
+          } else {
+            // Une autre erreur s'est produite
+            console.error('Erreur lors de la création de la famille :', error);
+          }
+        }
+      );
+  }
+
 
   resetForm(): void {
     this.familleData = {

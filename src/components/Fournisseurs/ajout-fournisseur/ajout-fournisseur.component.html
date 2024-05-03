@@ -2,11 +2,12 @@
   <h2 class="text-2xl font-bold mb-4 text-center mt-12 underline">Création de fournisseurs</h2>
 
 
-  <form (submit)="onSubmit()" #form="ngForm">
+  <form  #form="ngForm">
 
     <div class="mb-4">
       <label for="compte_tiers" class="block text-sm font-medium text-gray-700">Compte tiers</label>
-      <input type="text" id="compte_tiers" name="compte_tiers" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.compte_tiers">
+      <!-- Ajout du préfixe "FR_" avec la valeur initiale -->
+      <input type="text" id="compte_tiers" name="compte_tiers" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.compte_tiers" value="FR_">
     </div>
 
     <div class="mb-4">
@@ -60,9 +61,12 @@
       <input type="text" id="ninea" name="ninea" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.ninea">
     </div>
 
-    <div class="flex justify-center">
-      <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-        Créer
+    <div class="flex justify-between">
+      <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="onSubmit()">
+        Ajouter
+      </button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onSubmitQuit()" type="submit">
+        Ajouter et quitter
       </button>
     </div>
   </form>

@@ -99,7 +99,35 @@ onSubmit(): void {
         this.resetForm();
       },
       error => {
-        console.error('Erreur lors de la création de l\'Article :', error);
+        if (error.status === 400) {
+          // Le code existe déjà dans la base de données
+          alert("La reference existe déjà dans la base de données");
+        } else {
+          // Une autre erreur s'est produite
+          console.error('Erreur lors de la création de la famille :', error);
+        }
+      }
+    );
+}
+
+onSubmitQuit(): void {
+  this.articleservice.createArticle(this.articleData)
+    .subscribe(
+      response => {
+        console.log('Article créée avec succès :', response);
+        alert("Article inséré avec succès")
+        // Réinitialiser les données du formulaire après la création réussie
+        this.router.navigate(['/articles']);
+
+      },
+      error => {
+        if (error.status === 400) {
+          // Le code existe déjà dans la base de données
+          alert("La reference existe déjà dans la base de données");
+        } else {
+          // Une autre erreur s'est produite
+          console.error('Erreur lors de la création de la famille :', error);
+        }
       }
     );
 }
