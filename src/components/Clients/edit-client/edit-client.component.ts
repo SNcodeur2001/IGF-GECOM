@@ -20,6 +20,8 @@ import { ClientService } from 'src/app/services/clients/client-service';
 export class EditClientComponent {
   clientId: number=0;
   client: any = {};
+  editable=false;
+
 
   constructor(private route: ActivatedRoute,
     private http: HttpClient,
@@ -62,6 +64,10 @@ export class EditClientComponent {
         console.error('Error updating famille:', error);
       }
     );
+  }
+
+  toggleEdit():void{
+    this.editable = !this.editable
   }
 
 }

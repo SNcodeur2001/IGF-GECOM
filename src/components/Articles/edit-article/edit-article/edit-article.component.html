@@ -1,18 +1,18 @@
-<h2 class="text-2xl font-bold mb-4 text-center mt-9 underline">Modification d'articles</h2>
+<h2 class="text-2xl font-bold mb-4 text-center mt-9 underline">Détails des articles</h2>
 <form (submit)="updateArticle()">
   <div class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-7">
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="reference">
         Référence
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="reference" type="text" placeholder="Référence" [(ngModel)]="article.reference" name="reference" disabled="">
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="reference" type="text" placeholder="Référence" [(ngModel)]="article.reference" name="reference" [disabled]="!editable" required>
     </div>
 
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="designation">
         Désignation
       </label>
-      <input class="shadow appearadnce-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="designation" type="text" placeholder="Désignation" [(ngModel)]="article.designation" name="designation">
+      <input class="shadow appearadnce-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="designation" type="text" placeholder="Désignation" [(ngModel)]="article.designation" name="designation" [disabled]="!editable" required>
     </div>
 
     <!-- Ajouter le champ Famille avec ngModel -->
@@ -20,7 +20,7 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="famille">
         Famille
       </label>
-      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="famille" [(ngModel)]="article.famille_id" name="famille_id">
+      <select class="selectpicker shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="famille" [(ngModel)]="article.famille_id" name="famille_id" [disabled]="!editable" required data-live-search="true" >
         <option value="">--- Choisissez une famille ---</option>
         <option *ngFor="let famille of familles" [value]="famille.id">{{ famille.intitule }}</option>
       </select>
@@ -31,7 +31,7 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="suiviStock">
         Suivi de stock
       </label>
-      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="suiviStock" [(ngModel)]="article.suivi_stock" name="suiviStock">
+      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="suiviStock" [(ngModel)]="article.suivi_stock" name="suiviStock" [disabled]="!editable" required>
         <option value="">---Suivi de stock---</option>
         <option value="CMUP">CMUP</option>
         <option value="FIFO">FIFO</option>
@@ -43,7 +43,7 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="prixAchat">
         Prix Achat
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="prixAchat" type="text" placeholder="Prix Achat" [(ngModel)]="article.prix_achat" name="prixAchat">
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="prixAchat" type="text" placeholder="Prix Achat" [(ngModel)]="article.prix_achat" name="prixAchat" [disabled]="!editable" required>
     </div>
 
     <!-- Ajouter le champ Dernier prix achat avec ngModel -->
@@ -51,7 +51,7 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="dernierPrixAchat">
         Dernier prix achat
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="dernierPrixAchat" type="text" placeholder="Dernier Prix Achat" [(ngModel)]="article.dernier_prix_achat" name="dernierPrixAchat">
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="dernierPrixAchat" type="text" placeholder="Dernier Prix Achat" [(ngModel)]="article.dernier_prix_achat" name="dernierPrixAchat" [disabled]="!editable" required>
     </div>
 
     <!-- Ajouter le champ Unité Achat Vente avec ngModel -->
@@ -59,7 +59,7 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="uniteAchatVente">
         Unité Achat Vente
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="uniteAchatVente" type="text" placeholder="Unité Achat Vente" [(ngModel)]="article.unite_achat_vente" name="uniteAchatVente">
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="uniteAchatVente" type="text" placeholder="Unité Achat Vente" [(ngModel)]="article.unite_achat_vente" name="uniteAchatVente" [disabled]="!editable" required>
     </div>
 
     <!-- Ajouter le champ Dépôt avec ngModel -->
@@ -67,7 +67,7 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="depot">
         Depot
       </label>
-      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="famille" [(ngModel)]="article.depot_id" name="depot_id">
+      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="famille" [(ngModel)]="article.depot_id" name="depot_id" [disabled]="!editable" required>
         <option value="">--- Choisissez un depot ---</option>
         <option *ngFor="let depot of depots" [value]="depot.id">{{ depot.nom }}</option>
       </select>
@@ -78,14 +78,16 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="fournisseur">
         fournisseur
       </label>
-      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fournisseur" [(ngModel)]="article.id_fournisseur" name="id_fournisseur">
+      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fournisseur" [(ngModel)]="article.id_fournisseur" name="id_fournisseur" [disabled]="!editable" required>
         <option value="">--- Choisissez un fournisseur ---</option>
         <option *ngFor="let fournisseur of fournisseurs" [value]="fournisseur.id">{{ fournisseur.intitule }}</option>
       </select>
     </div>
-
-    <div class="flex items-center justify-between">
-      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+    <div class="flex justify-between">
+      <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="toggleEdit()">
+      {{ editable ? 'Annuler' : 'Modifier' }}
+      </button>
+      <button *ngIf="editable" type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
         Enregistrer
       </button>
     </div>

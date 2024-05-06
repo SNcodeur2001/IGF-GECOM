@@ -19,6 +19,8 @@ import { FournisseurService } from 'src/app/services/fournisseur/fournisseur-ser
 export class EditFournisseurComponent {
   fournisseurId: number=0;
   fournisseur: any = {};
+  editable=false;
+
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router,
     private fournisseurService: FournisseurService
@@ -57,6 +59,10 @@ export class EditFournisseurComponent {
         console.error('Error updating famille:', error);
       }
     );
+  }
+
+  toggleEdit():void{
+    this.editable = !this.editable
   }
 
 }

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,12 +8,16 @@ import { DepotService } from 'src/app/services/depot/depot-service';
 @Component({
   selector: 'app-edit-depot',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,
+            CommonModule
+  ],
   templateUrl: './edit-depot.component.html',
   styleUrl: './edit-depot.component.scss'
 })
 export class EditDepotComponent {
   depotId: number=0;
+  editable=false;
+
   depot = {
     nom: '',
     responsable_depot: '',
@@ -63,5 +68,9 @@ export class EditDepotComponent {
         console.error('Error updating famille:', error);
       }
     );
+  }
+
+  toggleEdit():void{
+    this.editable = !this.editable
   }
 }

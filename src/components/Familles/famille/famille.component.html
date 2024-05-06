@@ -51,13 +51,17 @@
           </td>
           <td class="px-6 py-4 whitespace-nowrap">
 
-           <button class="text-blue-500   hover:text-blue-700 mr-7" (click)="goToEdit(famille.id)">
-              <i class="fas fa-pencil-alt"></i>
+            <!-- <button class="text-green-500 hover:text-gren-700 mr-3" (click)="deleteFamille(famille.id)">
+            </button> -->
+           <button class="text-blue-500   hover:text-blue-700 mr-5" (click)="goToEdit(famille.id)">
+            <i class="fas fa-plus"></i>
+
             </button>
 
-            <button class="text-red-500 hover:text-red-700" (click)="deleteFamille(famille.id)">
+            <button class="text-red-500 hover:text-red-700 " (click)="deleteFamille(famille.id)">
               <i class="fas fa-trash-alt"></i>
             </button>
+
           </td>
         </tr>
       </tbody>

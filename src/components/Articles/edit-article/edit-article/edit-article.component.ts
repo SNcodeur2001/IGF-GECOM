@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/article/article-service';
 import { DepotService } from 'src/app/services/depot/depot-service';
 import { FamilleService } from 'src/app/services/famille/famille-service';
 import { FournisseurService } from 'src/app/services/fournisseur/fournisseur-service';
-
 @Component({
   selector: 'app-edit-article',
   standalone: true,
@@ -20,6 +19,8 @@ import { FournisseurService } from 'src/app/services/fournisseur/fournisseur-ser
 })
 export class EditArticleComponent {
   articleId: number=0;
+  editable = false;
+
   article = {
     reference: '',
     designation: '',
@@ -120,4 +121,16 @@ getFournisseurs(): void {
   );
 
 }
+
+  toggleEdit():void{
+    this.editable = !this.editable;
+  }
+
+
+  @ViewChild('selectPicker') selectPicker!: ElementRef;
+
+
+  // ngAfterViewInit(): void {
+  //   $(this.selectPicker.nativeElement).selectpicker();
+  // }
 }

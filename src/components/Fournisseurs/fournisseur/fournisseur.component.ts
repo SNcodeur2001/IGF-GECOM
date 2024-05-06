@@ -50,4 +50,5 @@ export class FournisseurComponent {
     this.router.navigate(['/edit-fournisseur', id], { relativeTo: this.route });
   }
 
+
 }

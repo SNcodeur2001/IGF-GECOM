@@ -8,7 +8,7 @@
         Nom
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="numero" type="text" placeholder="Numéro" [(ngModel)]="depot.nom" name="numero">
+             id="numero" type="text" placeholder="Numéro" [(ngModel)]="depot.nom" name="numero" [disabled]="!editable" required>
     </div>
     <!-- Responsable du dépôt -->
     <div class="mb-4">
@@ -16,7 +16,7 @@
         Responsable du dépôt
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="responsableDepot" type="text" placeholder="Responsable du dépôt" [(ngModel)]="depot.responsable_depot" name="responsableDepot">
+             id="responsableDepot" type="text" placeholder="Responsable du dépôt" [(ngModel)]="depot.responsable_depot" name="responsableDepot" [disabled]="!editable" required>
     </div>
     <!-- Adresse -->
     <div class="mb-4">
@@ -24,15 +24,15 @@
         Adresse
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="adresse" type="text" placeholder="Adresse" [(ngModel)]="depot.adresse" name="adresse">
+             id="adresse" type="text" placeholder="Adresse" [(ngModel)]="depot.adresse" name="adresse" [disabled]="!editable" required>
     </div>
     <!-- Complément -->
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="complement">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="complement" >
         Complément
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="complement" type="text" placeholder="Complément" [(ngModel)]="depot.complement" name="complement">
+             id="complement" type="text" placeholder="Complément" [(ngModel)]="depot.complement" name="complement" [disabled]="!editable" required>
     </div>
     <!-- Code postal -->
     <div class="mb-4">
@@ -40,7 +40,7 @@
         Code postal
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="codePostal" type="text" placeholder="Code postal" [(ngModel)]="depot.code_postal" name="codePostal">
+             id="codePostal" type="text" placeholder="Code postal" [(ngModel)]="depot.code_postal" name="codePostal" [disabled]="!editable" required>
     </div>
     <!-- Région -->
     <div class="mb-4">
@@ -48,7 +48,7 @@
         Région
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="region" type="text" placeholder="Région" [(ngModel)]="depot.region" name="region">
+             id="region" type="text" placeholder="Région" [(ngModel)]="depot.region" name="region" [disabled]="!editable" required>
     </div>
     <!-- Ville -->
     <div class="mb-4">
@@ -56,7 +56,7 @@
         Ville
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="ville" type="text" placeholder="Ville" [(ngModel)]="depot.ville" name="ville">
+             id="ville" type="text" placeholder="Ville" [(ngModel)]="depot.ville" name="ville" [disabled]="!editable" required>
     </div>
     <!-- Pays -->
     <div class="mb-4">
@@ -64,7 +64,7 @@
         Pays
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="pays" type="text" placeholder="Pays" [(ngModel)]="depot.pays" name="pays">
+             id="pays" type="text" placeholder="Pays" [(ngModel)]="depot.pays" name="pays" [disabled]="!editable" required>
     </div>
     <!-- Téléphone -->
     <div class="mb-4">
@@ -72,7 +72,7 @@
         Téléphone
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="telephone" type="text" placeholder="Téléphone" [(ngModel)]="depot.telephone" name="telephone">
+             id="telephone" type="text" placeholder="Téléphone" [(ngModel)]="depot.telephone" name="telephone" [disabled]="!editable" required>
     </div>
     <!-- Email -->
     <div class="mb-6">
@@ -80,12 +80,15 @@
         Email
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="email" type="email" placeholder="Email" [(ngModel)]="depot.email" name="email">
+             id="email" type="email" placeholder="Email" [(ngModel)]="depot.email" name="email" [disabled]="!editable" required>
     </div>
     <!-- Bouton Ajouter -->
-    <div class="flex items-center justify-between">
-      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-        Modifier
+    <div class="flex justify-between">
+      <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="toggleEdit()">
+      {{ editable ? 'Annuler' : 'Modifier' }}
+      </button>
+      <button *ngIf="editable" type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        Enregistrer
       </button>
     </div>
   </form>

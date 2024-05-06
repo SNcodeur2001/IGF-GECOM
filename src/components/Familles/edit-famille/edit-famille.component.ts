@@ -20,6 +20,7 @@ import { FamilleService } from 'src/app/services/famille/famille-service';
 export class EditFamilleComponent {
   famille: any = {};
   familleId: number = 0; // Initialisation avec une valeur par défaut
+  editable = false;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router,
     private familleService:FamilleService
@@ -59,4 +60,11 @@ updateFamille(): void {
       }
     );
   }
+
+  toggleEdit(): void {
+    this.editable = !this.editable;
+  }
+
+
+
 }
