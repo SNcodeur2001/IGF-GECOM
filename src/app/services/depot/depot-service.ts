@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class DepotService {
-  private apiUrl: string = 'http://192.168.2.5:8000/api/depot';
+  private apiUrl: string = 'http://192.168.1.33:8000/api/depot';
 
 
   constructor(private http: HttpClient) {}
@@ -25,6 +25,6 @@ export class DepotService {
   }
 
   createDepot(data: any) {
-    return this.http.post('http://192.168.2.5:8000/api/depot/create', data);
+    return this.http.post('http://192.168.1.33:8000/api/depot/create', data);
   }
 }

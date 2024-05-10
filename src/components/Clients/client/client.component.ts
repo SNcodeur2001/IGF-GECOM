@@ -15,6 +15,13 @@ import { ClientService } from '../../../app/services/clients/client-service';
 })
 export class ClientComponent {
   clients: any[] = [];
+  showDeletePopup: boolean = false;
+  clientToDeleteId: number | null = null;
+
+
+
+
+
 
   constructor(private clientService: ClientService, private router: Router, private route: ActivatedRoute) { }
 
@@ -34,19 +41,45 @@ export class ClientComponent {
   }
 
   deleteClient(id: number): void {
-    if (confirm('Are you sure you want to delete this Founisseur?')) {
-      this.clientService.deleteClient(id).subscribe(
+    // if (confirm('Are you sure you want to delete this Founisseur?')) {
+    //   this.clientService.deleteClient(id).subscribe(
+    //     () => {
+    //       this.clients = this.clients.filter(client => client.id !== id);
+    //     },
+    //     (error) => {
+    //       console.error('Error deleting client:', error);
+    //     }
+    //   );
+    // }
+    this.clientToDeleteId = id;
+    this.showDeletePopup = true;
+  }
+
+  goToEdit(id: number): void {
+    this.router.navigate(['/edit-client', id], { relativeTo: this.route });
+  }
+
+
+  closeDeletePopup(): void {
+    this.showDeletePopup = false;
+  }
+
+  confirmDelete(): void {
+    if (this.clientToDeleteId) {
+      this.clientService.deleteClient(this.clientToDeleteId).subscribe(
         () => {
-          this.clients = this.clients.filter(client => client.id !== id);
+          this.clients = this.clients.filter(client => client.id !== this.clientToDeleteId);
+          this.closeDeletePopup();
         },
         (error) => {
           console.error('Error deleting client:', error);
+          this.closeDeletePopup();
         }
       );
     }
   }
 
-  goToEdit(id: number): void {
-    this.router.navigate(['/edit-client', id], { relativeTo: this.route });
+  cancelDelete(): void {
+    this.closeDeletePopup();
   }
 }

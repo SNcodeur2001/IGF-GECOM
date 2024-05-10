@@ -1,4 +1,9 @@
+<div class="container mx-auto p-4" [ngClass]="{ 'bg-green-100': editable, 'bg-gray-100': !editable }">
 <h2 class="text-2xl font-bold mb-4 text-center mt-9 underline">Détails des articles</h2>
+<div class="mb-4 text-center text-gray-700" *ngIf="editable">
+  <span class="bg-green-500 w-full text-white">Veuillez saisir les champs d'informations à modifier</span>
+</div>
+
 <form (submit)="updateArticle()">
   <div class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-7">
     <div class="mb-4">
@@ -93,3 +98,4 @@
     </div>
   </div>
 </form>
+</div>

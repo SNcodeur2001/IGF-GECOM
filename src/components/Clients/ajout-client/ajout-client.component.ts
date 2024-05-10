@@ -60,6 +60,26 @@ error => {
 );
 }
 
+onSubmitQuit() {
+  this.clientService.createClient(this.clientData).subscribe(
+  (response) => {
+  console.log('client créé avec succès', response);
+  alert("client créé avec succès");
+
+  this.router.navigate(['/clients']);
+  },
+  error => {
+    if (error.status === 400) {
+      // Le code existe déjà dans la base de données
+      alert("Un champ existe deja existe déjà dans la base de données");
+    } else {
+      // Une autre erreur s'est produite
+      console.error('Erreur lors de la création de la famille :', error);
+    }
+  }
+  );
+  }
+
 resetForm(): void {
   this.clientData = {
     compte_tiers: '',

@@ -19,6 +19,8 @@ import { FamilleService } from 'src/app/services/famille/famille-service';
 export class ArticleComponent implements OnInit{
   articles: any[] = [];
   familles: any[] = []; // Déclarez la propriété familles
+  showDeletePopup: boolean = false;
+  articleToDeleteId: number | null = null;
 
   selectedFamille: string = ''; // Ajoutez une propriété pour stocker la famille sélectionnée
 
@@ -43,16 +45,20 @@ export class ArticleComponent implements OnInit{
   }
 
   deleteArticle(id: number): void {
-    if (confirm('Are you sure you want to delete this article?')) {
-      this.articleservice.deleteArticle(id).subscribe(
-        () => {
-          this.articles = this.articles.filter(articles => articles.id !== id);
-        },
-        (error) => {
-          console.error('Error deleting article:', error);
-        }
-      );
-    }
+    // if (confirm('Are you sure you want to delete this article?')) {
+    //   this.articleservice.deleteArticle(id).subscribe(
+    //     () => {
+    //       this.articles = this.articles.filter(articles => articles.id !== id);
+    //     },
+    //     (error) => {
+    //       console.error('Error deleting article:', error);
+    //     }
+    //   );
+    // }
+
+
+    this.articleToDeleteId = id;
+  this.showDeletePopup = true;
   }
 
   goToEdit(id: number): void {
@@ -69,4 +75,30 @@ export class ArticleComponent implements OnInit{
       }
     );
   }
+
+
+
+  closeDeletePopup(): void {
+    this.showDeletePopup = false;
+  }
+
+  confirmDelete(): void {
+    if (this.articleToDeleteId) {
+      this.articleservice.deleteArticle(this.articleToDeleteId).subscribe(
+        () => {
+          this.articles = this.articles.filter(article => article.id !== this.articleToDeleteId);
+          this.closeDeletePopup();
+        },
+        (error) => {
+          console.error('Error deleting Article:', error);
+          this.closeDeletePopup();
+        }
+      );
+    }
+  }
+
+  cancelDelete(): void {
+    this.closeDeletePopup();
+  }
+
 }

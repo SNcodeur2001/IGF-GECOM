@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 })
 export class ArticleService {
 
-  private apiUrl = 'http://192.168.2.5:8000/api/article';
+  private apiUrl = 'http://192.168.1.33:8000/api/article';
 
   constructor(private http: HttpClient) { }
 

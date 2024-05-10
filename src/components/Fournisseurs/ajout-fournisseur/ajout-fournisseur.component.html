@@ -1,67 +1,96 @@
 <div class="container mx-auto p-4">
   <h2 class="text-2xl font-bold mb-4 text-center mt-12 underline">Création de fournisseurs</h2>
-
-
-  <form  #form="ngForm">
-
+  <form #form="ngForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <!-- Compte tiers -->
     <div class="mb-4">
-      <label for="compte_tiers" class="block text-sm font-medium text-gray-700">Compte tiers</label>
-      <!-- Ajout du préfixe "FR_" avec la valeur initiale -->
-      <input type="text" id="compte_tiers" name="compte_tiers" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.compte_tiers" value="FR_">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="compte_tiers">
+        Compte tiers
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="compte_tiers" type="text" placeholder="Compte tiers" [(ngModel)]="fournisseurData.compte_tiers" name="compte_tiers"  required>
     </div>
-
+    <!-- Intitulé -->
     <div class="mb-4">
-      <label for="intitule" class="block text-sm font-medium text-gray-700">Intitulé</label>
-      <input type="text" id="intitule" name="intitule" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.intitule">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="intitule">
+        Intitulé
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="intitule" type="text" placeholder="Intitulé" [(ngModel)]="fournisseurData.intitule" name="intitule"  required>
     </div>
-
+    <!-- Adresse -->
     <div class="mb-4">
-      <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse</label>
-      <input type="text" id="adresse" name="adresse" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.adresse">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="adresse">
+        Adresse
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="adresse" type="text" placeholder="Adresse" [(ngModel)]="fournisseurData.adresse" name="adresse"  required>
     </div>
-
+    <!-- Complément -->
     <div class="mb-4">
-      <label for="complement" class="block text-sm font-medium text-gray-700">Complément</label>
-      <input type="text" id="complement" name="complement" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.complement">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="complement">
+        Complément
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="complement" type="text" placeholder="Complément" [(ngModel)]="fournisseurData.complement" name="complement"  required>
     </div>
-
+    <!-- Code postal -->
     <div class="mb-4">
-      <label for="code_postal" class="block text-sm font-medium text-gray-700">Code postal</label>
-      <input type="text" id="code_postal" name="code_postal" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.code_postal">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="code_postal">
+        Code postal
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="code_postal" type="text" placeholder="Code postal" [(ngModel)]="fournisseurData.code_postal" name="code_postal"  required>
     </div>
-
-
+    <!-- Région -->
     <div class="mb-4">
-      <label for="region" class="block text-sm font-medium text-gray-700">Région</label>
-      <input type="text" id="region" name="region" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.region">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="region">
+        Région
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="region" type="text" placeholder="Région" [(ngModel)]="fournisseurData.region" name="region"  required>
     </div>
-
+    <!-- Ville -->
     <div class="mb-4">
-      <label for="ville" class="block text-sm font-medium text-gray-700">Ville</label>
-      <input type="text" id="ville" name="ville" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.ville">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="ville">
+        Ville
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="ville" type="text" placeholder="Ville" [(ngModel)]="fournisseurData.ville" name="ville"  required>
     </div>
-
+    <!-- Pays -->
     <div class="mb-4">
-      <label for="pays" class="block text-sm font-medium text-gray-700">Pays</label>
-      <input type="text" id="pays" name="pays" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.pays">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="pays">
+        Pays
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="pays" type="text" placeholder="Pays" [(ngModel)]="fournisseurData.pays" name="pays"  required>
     </div>
-
+    <!-- Téléphone -->
     <div class="mb-4">
-      <label for="telephone" class="block text-sm font-medium text-gray-700">Téléphone</label>
-      <input type="text" id="telephone" name="telephone" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.telephone">
-
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="telephone">
+        Téléphone
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="telephone" type="text" placeholder="Téléphone" [(ngModel)]="fournisseurData.telephone" name="telephone"  required>
     </div>
+    <!-- Email -->
     <div class="mb-4">
-      <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-      <input type="email" id="email" name="email" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.email">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+        Email
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="email" type="email" placeholder="Email" [(ngModel)]="fournisseurData.email" name="email"  required>
     </div>
-
-    <div class="mb-4">
-      <label for="ninea" class="block text-sm font-medium text-gray-700">NINEA</label>
-      <input type="text" id="ninea" name="ninea" class="border border-gray-300 rounded-md p-2 w-full" [(ngModel)]="fournisseurData.ninea">
+    <!-- NINEA -->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="ninea">
+        NINEA
+      </label>
+      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             id="ninea" type="text" placeholder="NINEA" [(ngModel)]="fournisseurData.ninea" name="ninea"  required>
     </div>
-
-    <div class="flex justify-between">
+    <!-- Boutons Ajouter -->
+    <div class="flex items-center justify-between">
       <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="onSubmit()">
         Ajouter
       </button>

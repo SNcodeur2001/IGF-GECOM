@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 })
 
 export class FamilleService {
-  private apiUrl = 'http://192.168.2.5:8000/api/famille';
+  private apiUrl = 'http://192.168.1.33:8000/api/famille';
 
 
   constructor(private http: HttpClient, private router:Router) { }
