@@ -12,6 +12,7 @@ import { ChartjsComponent } from '@coreui/angular-chartjs';
 import { RouterLink } from '@angular/router';
 import { IconDirective } from '@coreui/icons-angular';
 import { RowComponent, ColComponent, WidgetStatAComponent, TemplateIdDirective, ThemeDirective, DropdownComponent, ButtonDirective, DropdownToggleDirective, DropdownMenuDirective, DropdownItemDirective, DropdownDividerDirective } from '@coreui/angular';
+import { FamilleService } from 'src/app/services/famille/famille-service';
 
 @Component({
     selector: 'app-widgets-dropdown',
@@ -23,9 +24,15 @@ import { RowComponent, ColComponent, WidgetStatAComponent, TemplateIdDirective, 
 })
 export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
 
+  totalFamilles: string = ''; // Propriété pour contenir le nombre total de familles
+
   constructor(
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private familleService:FamilleService
   ) {}
+
+
+
 
   data: any[] = [];
   options: any[] = [];
@@ -125,6 +132,11 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
 
   ngOnInit(): void {
     this.setData();
+    this.totalFamille();
+  }
+
+  totalFamille():void{
+    this.familleService.totalFamilles()
   }
 
   ngAfterContentInit(): void {

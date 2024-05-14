@@ -16,6 +16,7 @@ import { EditFournisseurComponent } from '../components/Fournisseurs/edit-fourni
 import { EditClientComponent } from '../components/Clients/edit-client/edit-client.component';
 import { EditDepotComponent } from '../components/Depots/edit-depot/edit-depot/edit-depot.component';
 import { EditArticleComponent } from '../components/Articles/edit-article/edit-article/edit-article.component';
+import { GetArticleByFamilleComponent } from '../components/Familles/get-article-by-famille/get-article-by-famille.component';
 
 export const routes: Routes = [
   {
@@ -130,6 +131,10 @@ export const routes: Routes = [
       {
         path: 'edit-depot/:id',
         component:EditDepotComponent
+      },
+      {
+        path: 'list-article-par-famille/:id',
+        component:GetArticleByFamilleComponent
       }
     ]
   },

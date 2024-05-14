@@ -1,0 +1,75 @@
+
+<div class="container mx-auto p-4 mt-12">
+
+  <h2 class="text-2xl font-bold mb-4 text-center mt-12 underline">Liste des articles de la famille :</h2>
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-700">
+        <tr>
+
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Références
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Désignation
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Famille
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Suivi Stock
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Prix Achat
+          </th>
+            <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Dernier Prix Achat
+            </th> -->
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Unité Achat Vente
+          </th>
+          <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Depot
+          </th> -->
+          <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+            Fournisseur
+          </th> -->
+
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <!-- Articles -->
+        <tr *ngFor="let article of articles">
+
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.reference }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.designation }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.famille }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.suivi_stock }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.prix_achat }}</div>
+          </td>
+          <!-- <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.dernier_prix_achat }}</div>
+          </td> -->
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.unite_achat_vente }}</div>
+          </td>
+          <!-- <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.depot }}</div>
+          </td> -->
+          <!-- <td class="px-6 py-4 whitespace-nowrap">
+            <div class="text-sm text-gray-900">{{ article.fournisseur }}</div>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

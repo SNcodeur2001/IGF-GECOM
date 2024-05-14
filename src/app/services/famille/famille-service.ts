@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 })
 
 export class FamilleService {
-  private apiUrl = 'http://192.168.1.33:8000/api/famille';
+  private apiUrl = 'http://192.168.2.5:8000/api/famille';
 
 
   constructor(private http: HttpClient, private router:Router) { }
@@ -28,5 +28,13 @@ export class FamilleService {
 
   updateFamille(familleId: number, familleData: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/update/${familleId}`, familleData);
+  }
+
+  getArticlesByFamille(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/list-articles/${id}`);
+  }
+
+  totalFamilles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/count`);
   }
 }

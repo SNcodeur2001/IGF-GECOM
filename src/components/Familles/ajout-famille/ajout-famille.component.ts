@@ -33,13 +33,13 @@ export class AjoutFamilleComponent {
         response => {
           console.log('Famille créée avec succès :', response);
           // Réinitialiser les données du formulaire après la création réussie
-          alert("Famille créée avec succès");
+          // alert("Famille créée avec succès");
           this.resetForm();
         },
         error => {
           if (error.status === 400) {
             // Le code existe déjà dans la base de données
-            alert("Le code famille existe déjà dans la base de données");
+            // alert("Le code famille existe déjà dans la base de données");
           } else {
             // Une autre erreur s'est produite
             console.error('Erreur lors de la création de la famille :', error);
@@ -54,13 +54,13 @@ export class AjoutFamilleComponent {
         response => {
           console.log('Famille créée avec succès :', response);
           // Réinitialiser les données du formulaire après la création réussie
-          alert("Famille créée avec succès");
+          // alert("Famille créée avec succès");
           this.router.navigate(['/familles']);
         },
         error => {
           if (error.status === 400) {
             // Le code existe déjà dans la base de données
-            alert("Le code famille existe déjà dans la base de données");
+            // alert("Le code famille existe déjà dans la base de données");
           } else {
             // Une autre erreur s'est produite
             console.error('Erreur lors de la création de la famille :', error);

@@ -59,6 +59,10 @@ export class FamilleComponent implements OnInit{
     this.router.navigate(['/edit-famille', id], { relativeTo: this.route });
   }
 
+  goToEditListArticle(id: number): void {
+    this.router.navigate(['/list-article-par-famille', id], { relativeTo: this.route });
+  }
+
 
   closeDeletePopup(): void {
     this.showDeletePopup = false;
@@ -81,6 +85,17 @@ export class FamilleComponent implements OnInit{
 
   cancelDelete(): void {
     this.closeDeletePopup();
+  }
+
+  getArticlesByFamille(id:number): void {
+    this.familleService.getArticlesByFamille(id).subscribe(
+      (response) => {
+        this.familles = response;
+      },
+      (error) => {
+        console.error('Error fetching famille:', error);
+      }
+    );
   }
 
 }
