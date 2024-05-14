@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FamilleService } from 'src/app/services/famille/famille-service';
 
@@ -7,12 +8,14 @@ import { FamilleService } from 'src/app/services/famille/famille-service';
   selector: 'app-famille',
   standalone: true,
   imports: [RouterLink,
-            CommonModule
+            CommonModule,
+            FormsModule
   ],
   templateUrl: './famille.component.html',
   styleUrl: './famille.component.scss'
 })
 export class FamilleComponent implements OnInit{
+  rechercheFamille: string = '';
   familles: any[] = [];
   showDeletePopup: boolean = false;
   familleToDeleteId: number | null = null;
@@ -98,4 +101,15 @@ export class FamilleComponent implements OnInit{
     );
   }
 
+  filtrerFamilles(): any[] {
+    if (!this.rechercheFamille.trim()) {
+      return this.familles; // Si la recherche est vide, retourne toutes les familles
+    }
+    return this.familles.filter(famille =>
+      famille.code.toLowerCase().includes(this.rechercheFamille.toLowerCase()) ||
+      famille.intitule.toLowerCase().includes(this.rechercheFamille.toLowerCase()) ||
+      famille.unite_de_vente.toLowerCase().includes(this.rechercheFamille.toLowerCase()) ||
+      famille.suivi_stock.toLowerCase().includes(this.rechercheFamille.toLowerCase())
+    );
+  }
 }

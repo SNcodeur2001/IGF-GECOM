@@ -18,7 +18,7 @@
       </button>
     </div>
     <div class="relative">
-      <input type="text" placeholder="Rechercher..." class="border border-gray-300 rounded-md p-2 w-full md:w-72">
+      <input type="text" placeholder="Rechercher..." class="border border-gray-300 rounded-md p-2 w-full md:w-72" [(ngModel)]="rechercheFamille">
       <i class="absolute right-3 top-3 fas fa-search text-gray-400"></i>
     </div>
   </div>
@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-        <tr *ngFor="let famille of familles">
+        <tr *ngFor="let famille of filtrerFamilles()">
           <td class="px-6 py-4 whitespace-nowrap">
             <div class="text-sm text-gray-900">{{ famille.code }}</div>
           </td>

@@ -1,3 +1,13 @@
+<ngb-alert *ngIf="familleInseree" [dismissible]="false" type="success" class="flex justify-between">
+  La famille a été insérée avec succès !
+  <button class="btn" (click)="closePopupGreen()">Fermer</button>
+</ngb-alert>
+
+<ngb-alert *ngIf="familleExistant" [dismissible]="false" type="danger" class="flex justify-between">
+  Le code de la  famille existe déjà !
+  <button class="btn" (click)="closePopupRed()">Fermer</button>
+</ngb-alert>
+
 <div class="max-w-md mx-auto mt-12">
   <h2 class="text-2xl font-bold mb-4 text-center mt-12 underline">Ajout d'une famille</h2>
   <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
