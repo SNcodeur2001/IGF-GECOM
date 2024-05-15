@@ -72,4 +72,8 @@ updateFamille(): void {
 
   }
 
+  goToEditListArticle(id: number): void {
+    this.router.navigate(['/list-article-par-famille', id], { relativeTo: this.route });
+  }
+
 }

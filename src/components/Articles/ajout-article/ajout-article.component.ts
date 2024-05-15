@@ -53,6 +53,8 @@ ngOnInit(): void {
   this.getFamilles();
   this.getDepots();
   this.getFournisseurs();
+  // console.log(this.familles);  // Ajoutez ceci pour vérifier les données
+
 
 }
 
@@ -60,6 +62,8 @@ getFamilles(): void {
   this.familleService.getFamille().subscribe(
     (response) => {
       this.familles = response; // Stockez les familles récupérées dans la variable familles
+      console.log(this.familles); // Vérifiez les données récupérées
+
     },
     (error) => {
       console.error('Error fetching familles:', error);
@@ -130,6 +134,20 @@ onSubmitQuit(): void {
         }
       }
     );
+}
+
+
+onFamilleChange(): void {
+  const selectedFamille = this.familles.find(famille => famille.id == this.articleData.famille_id);
+  console.log(selectedFamille);  // Ajoutez ceci pour vérifier la sélection
+
+  if (selectedFamille) {
+    this.articleData.suivi_stock = selectedFamille.suivi_stock; // Mettre à jour le suivi de stock
+
+
+  } else {
+    this.articleData.suivi_stock = ''; // Réinitialiser si aucune famille n'est sélectionnée
+  }
 }
 
 resetForm(): void {
