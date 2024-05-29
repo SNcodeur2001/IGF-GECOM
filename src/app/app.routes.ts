@@ -1,22 +1,5 @@
 import { Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './layout';
-import { TestComponent } from '../components/test/test.component';
-import { FamilleComponent } from '../components/Familles/famille/famille.component';
-import { AjoutFamilleComponent } from '../components/Familles/ajout-famille/ajout-famille.component';
-import { ArticleComponent } from '../components/Articles/article/article.component';
-import { AjoutArticleComponent } from '../components/Articles/ajout-article/ajout-article.component';
-import { FournisseurComponent } from '../components/Fournisseurs/fournisseur/fournisseur.component';
-import { AjoutFournisseurComponent } from '../components/Fournisseurs/ajout-fournisseur/ajout-fournisseur.component';
-import { AjoutClientComponent } from '../components/Clients/ajout-client/ajout-client.component';
-import { ClientComponent } from '../components/Clients/client/client.component';
-import { DepotComponent } from '../components/Depots/depot/depot.component';
-import { AjoutDepotComponent } from '../components/Depots/ajout-depot/ajout-depot/ajout-depot.component';
-import { EditFamilleComponent } from '../components/Familles/edit-famille/edit-famille.component';
-import { EditFournisseurComponent } from '../components/Fournisseurs/edit-fournisseur/edit-fournisseur/edit-fournisseur.component';
-import { EditClientComponent } from '../components/Clients/edit-client/edit-client.component';
-import { EditDepotComponent } from '../components/Depots/edit-depot/edit-depot/edit-depot.component';
-import { EditArticleComponent } from '../components/Articles/edit-article/edit-article/edit-article.component';
-import { GetArticleByFamilleComponent } from '../components/Familles/get-article-by-famille/get-article-by-famille.component';
 
 export const routes: Routes = [
   {
@@ -35,14 +18,13 @@ export const routes: Routes = [
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
       },
-
       {
         path: 'familles',
-        component:FamilleComponent
+        loadComponent: () => import('../components/Familles/famille/famille.component').then(m => m.FamilleComponent)
       },
       {
         path: 'articles',
-        component:ArticleComponent
+        loadComponent: () => import('../components/Articles/article/article.component').then(m => m.ArticleComponent)
       },
       {
         path: 'theme',
@@ -82,59 +64,59 @@ export const routes: Routes = [
       },
       {
         path: 'ajout-famille',
-        component:AjoutFamilleComponent
+        loadComponent: () => import('../components/Familles/ajout-famille/ajout-famille.component').then(m => m.AjoutFamilleComponent)
       },
       {
         path: 'edit-famille/:id',
-        component:EditFamilleComponent
+        loadComponent: () => import('../components/Familles/edit-famille/edit-famille.component').then(m => m.EditFamilleComponent)
       },
       {
         path: 'ajout-article',
-        component:AjoutArticleComponent
+        loadComponent: () => import('../components/Articles/ajout-article/ajout-article.component').then(m => m.AjoutArticleComponent)
       },
       {
         path: 'edit-article/:id',
-        component:EditArticleComponent
+        loadComponent: () => import('../components/Articles/edit-article/edit-article/edit-article.component').then(m => m.EditArticleComponent)
       },
       {
         path: 'fournisseur',
-        component:FournisseurComponent
+        loadComponent: () => import('../components/Fournisseurs/fournisseur/fournisseur.component').then(m => m.FournisseurComponent)
       },
       {
         path: 'ajouter-fournisseurs',
-        component:AjoutFournisseurComponent
+        loadComponent: () => import('../components/Fournisseurs/ajout-fournisseur/ajout-fournisseur.component').then(m => m.AjoutFournisseurComponent)
       },
       {
         path: 'edit-fournisseur/:id',
-        component:EditFournisseurComponent
+        loadComponent: () => import('../components/Fournisseurs/edit-fournisseur/edit-fournisseur/edit-fournisseur.component').then(m => m.EditFournisseurComponent)
       },
       {
         path: 'clients',
-        component:ClientComponent
+        loadComponent: () => import('../components/Clients/client/client.component').then(m => m.ClientComponent)
       },
       {
         path: 'ajouter-clients',
-        component:AjoutClientComponent
+        loadComponent: () => import('../components/Clients/ajout-client/ajout-client.component').then(m => m.AjoutClientComponent)
       },
       {
         path: 'edit-client/:id',
-        component:EditClientComponent
+        loadComponent: () => import('../components/Clients/edit-client/edit-client.component').then(m => m.EditClientComponent)
       },
       {
         path: 'depots',
-        component:DepotComponent
+        loadComponent: () => import('../components/Depots/depot/depot.component').then(m => m.DepotComponent)
       },
       {
         path: 'ajouter-depot',
-        component:AjoutDepotComponent
+        loadComponent: () => import('../components/Depots/ajout-depot/ajout-depot/ajout-depot.component').then(m => m.AjoutDepotComponent)
       },
       {
         path: 'edit-depot/:id',
-        component:EditDepotComponent
+        loadComponent: () => import('../components/Depots/edit-depot/edit-depot/edit-depot.component').then(m => m.EditDepotComponent)
       },
       {
         path: 'list-article-par-famille/:id',
-        component:GetArticleByFamilleComponent
+        loadComponent: () => import('../components/Familles/get-article-by-famille/get-article-by-famille.component').then(m => m.GetArticleByFamilleComponent)
       }
     ]
   },

@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { FamilleService } from '../../../app/services/famille/famille-service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialog } from '@angular/material/dialog';
+import { FournisseurFormComponent } from '../../Fournisseurs/form-fournisseur/fournisseur-form/fournisseur-form.component';
+
 
 
 
@@ -12,7 +19,13 @@ import { NgbAlert, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [FormsModule,
             CommonModule,
-            NgbAlertModule
+            NgbAlertModule,
+           MatTabsModule,
+           MatInputModule,
+           MatButtonModule,
+           MatFormFieldModule,
+           ReactiveFormsModule
+
   ],
   templateUrl: './ajout-famille.component.html',
   styleUrl: './ajout-famille.component.scss'
@@ -21,63 +34,89 @@ export class AjoutFamilleComponent {
 
 
   familleData = {
+    type:'details',
     code: '',
     intitule: '',
-    unite_de_vente: '',
-    suivi_stock: ''
+    unite_de_vente: null,
+    suivi_stock: null
   };
+  showForm  =false;
+
+  openForm(){
+    const dialogRef = this.dialog.open(FournisseurFormComponent, {
+      width: '500px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Vous pouvez effectuer des actions après la fermeture du popup si nécessaire
+    });
+  }
+
+  get selectedType() {
+    return this.familleData.type;
+  }
+
+  set selectedType(value: string) {
+    this.familleData.type = value;
+  }
+
   familleInseree = false;
   familleExistant= false;
+  formInvalid = false;
+
 
   constructor(private familleService:FamilleService,
               private router: Router,
+              public dialog: MatDialog
 
   ){}
 
 
+  validateForm(): boolean {
+    if (!this.familleData.code || !this.familleData.intitule) {
+      this.formInvalid = true;
+      return false;
+    }
+    this.formInvalid = false;
+    return true;
+  }
+
   onSubmit(): void {
-    this.familleService.createFamille(this.familleData)
-      .subscribe(
+    if (this.validateForm()) {
+      this.familleService.createFamille(this.familleData).subscribe(
         response => {
           console.log('Famille créée avec succès :', response);
-          this.familleInseree = true; // Définir la variable familleInseree sur true
-
+          this.familleInseree = true;
           this.resetForm();
         },
         error => {
           if (error.status === 400) {
-            // Le code existe déjà dans la base de données
-            // alert("Le code famille existe déjà dans la base de données");
-            this.familleExistant = true; // Définir la variable familleInseree sur true
-
+            this.familleExistant = true;
           } else {
-            // Une autre erreur s'est produite
             console.error('Erreur lors de la création de la famille :', error);
           }
         }
       );
+    }
   }
 
   onSubmitQuit(): void {
-    this.familleService.createFamille(this.familleData)
-      .subscribe(
+    if (this.validateForm()) {
+      this.familleService.createFamille(this.familleData).subscribe(
         response => {
           console.log('Famille créée avec succès :', response);
-
-          // Réinitialiser les données du formulaire après la création réussie
-          // alert("Famille créée avec succès");
           this.router.navigate(['/familles']);
         },
         error => {
           if (error.status === 400) {
-            // Le code existe déjà dans la base de données
-            // alert("Le code famille existe déjà dans la base de données");
+            this.familleExistant = true;
           } else {
-            // Une autre erreur s'est produite
             console.error('Erreur lors de la création de la famille :', error);
           }
         }
       );
+    }
   }
 
   closePopupRed() {
@@ -88,12 +127,17 @@ export class AjoutFamilleComponent {
     this.familleInseree = false;
   }
 
+  isFieldDisabled(): boolean {
+    return this.selectedType === 'total' || this.selectedType === 'centralisateur';
+  }
+
   resetForm(): void {
     this.familleData = {
+      type:'',
       code: '',
       intitule: '',
-      unite_de_vente: '',
-      suivi_stock: ''
+      unite_de_vente: null,
+      suivi_stock: null
     };
   }
 }

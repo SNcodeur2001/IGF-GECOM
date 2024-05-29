@@ -25,6 +25,6 @@ export class DepotService {
   }
 
   createDepot(data: any) {
-    return this.http.post('http://192.168.2.5:8000/api/depot/create', data);
+    return this.http.post('http://192.168.2.33:8000/api/depot/create', data);
   }
 }

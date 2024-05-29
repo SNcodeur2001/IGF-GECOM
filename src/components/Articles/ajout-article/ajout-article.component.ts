@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleService } from 'src/app/services/article/article-service';
 import { DepotService } from 'src/app/services/depot/depot-service';
 import { FamilleService } from 'src/app/services/famille/famille-service';
@@ -12,12 +13,19 @@ import { FournisseurService } from 'src/app/services/fournisseur/fournisseur-ser
   standalone: true,
   imports: [
             FormsModule,
-            CommonModule
+            CommonModule,
+            NgbAlertModule
   ],
   templateUrl: './ajout-article.component.html',
   styleUrl: './ajout-article.component.scss'
 })
 export class AjoutArticleComponent implements OnInit {
+ArticleInseree= false;
+ArticleExistant= false;
+closePopupRed() {
+this.ArticleExistant = false}
+closePopupGreen() {
+this.ArticleInseree = false}
   familles: any[] = []; // Déclarez la propriété familles
   selectedFamille: any; // Déclaration de la propriété selectedFamille
   depots: any[] = [];
@@ -98,17 +106,19 @@ onSubmit(): void {
     .subscribe(
       response => {
         console.log('Article créée avec succès :', response);
-        alert("Article inséré avec succès")
+        // alert("Article inséré avec succès")
+        this.ArticleInseree = true
         // Réinitialiser les données du formulaire après la création réussie
         this.resetForm();
       },
       error => {
         if (error.status === 400) {
           // Le code existe déjà dans la base de données
-          alert("La reference existe déjà dans la base de données");
+          // alert("La reference existe déjà dans la base de données");
+          this.ArticleExistant = true
         } else {
           // Une autre erreur s'est produite
-          console.error('Erreur lors de la création de la famille :', error);
+          console.error('Erreur lors de la création de l\'article :', error);
         }
       }
     );

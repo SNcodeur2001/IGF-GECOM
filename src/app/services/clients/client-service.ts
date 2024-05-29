@@ -23,6 +23,6 @@ export class ClientService {
   }
 
   updateClient(clientId: number, client: any): Observable<any> {
-    return this.http.put(`http://192.168.2.5:8000/api/client/update/${clientId}`, client);
+    return this.http.put(`http://192.168.2.33:8000/api/client/update/${clientId}`, client);
   }
 }

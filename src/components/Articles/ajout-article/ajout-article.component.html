@@ -1,3 +1,12 @@
+<ngb-alert *ngIf="ArticleInseree" [dismissible]="false" type="success" class="flex justify-between">
+  L'article a été inséré avec succès !
+  <button class="btn" (click)="closePopupGreen()">Fermer</button>
+</ngb-alert>
+
+<ngb-alert *ngIf="ArticleExistant" [dismissible]="false" type="danger" class="flex justify-between">
+  La reference l'article existe déjà !
+  <button class="btn" (click)="closePopupRed()">Fermer</button>
+</ngb-alert>
 <h2 class="text-2xl font-bold mb-4 text-center mt-9 underline">Ajout d'articles</h2>
 <form>
 
@@ -37,16 +46,18 @@
       Suivi de stock
     </label>
     <select
-      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      id="suiviStock"
-      [(ngModel)]="articleData.suivi_stock"
-      name="suiviStock"
-      >
-      <option value="CMUP" [selected]="articleData.suivi_stock === 'CMUP'">CMUP</option>
-      <option value="FIFO" [selected]="articleData.suivi_stock === 'FIFO'">FIFO</option>
-      <option value="LIFO" [selected]="articleData.suivi_stock === 'LIFO'">LIFO</option>
-      <option value="SERIALISE" [selected]="articleData.suivi_stock === 'SERIALISE'">SERIALISE</option>
-    </select>
+    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    id="suiviStock"
+    [(ngModel)]="articleData.suivi_stock"
+    name="suivi_stock"
+    disabled
+  >
+    <option [ngValue]="'CMUP'" [selected]="articleData.suivi_stock === 'CMUP'">CMUP</option>
+    <option [ngValue]="'FIFO'" [selected]="articleData.suivi_stock === 'FIFO'">FIFO</option>
+    <option [ngValue]="'LIFO'" [selected]="articleData.suivi_stock === 'LIFO'">LIFO</option>
+    <option [ngValue]="'SERIALISE'" [selected]="articleData.suivi_stock === 'SERIALISE'">SERIALISE</option>
+  </select>
+
     </div>
 
     <!-- Ajouter le champ Prix Achat avec ngModel -->

@@ -1,64 +1,395 @@
-<ngb-alert *ngIf="familleInseree" [dismissible]="false" type="success" class="flex justify-between">
+<ngb-alert *ngIf="familleInseree" [dismissible]="false" type="success" class="flex justify-between mb-4">
   La famille a été insérée avec succès !
   <button class="btn" (click)="closePopupGreen()">Fermer</button>
 </ngb-alert>
 
-<ngb-alert *ngIf="familleExistant" [dismissible]="false" type="danger" class="flex justify-between">
-  Le code de la  famille existe déjà !
+<ngb-alert *ngIf="familleExistant" [dismissible]="false" type="danger" class="flex justify-between mb-4">
+  Le code de la famille existe déjà !
   <button class="btn" (click)="closePopupRed()">Fermer</button>
 </ngb-alert>
 
-<div class="max-w-md mx-auto mt-12">
+<ngb-alert *ngIf="formInvalid" [dismissible]="true" type="warning" class="flex justify-between mb-4">
+  Les champs Code et Intitulé sont obligatoires !
+  <button class="btn" (click)="formInvalid = false">Fermer</button>
+</ngb-alert>
+
+
+
+<div class="w-full mx-auto mt-12 px-8">
   <h2 class="text-2xl font-bold mb-4 text-center mt-12 underline">Ajout d'une famille</h2>
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <!-- Code -->
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="code">
-        Code
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="code" type="text" placeholder="Code" [(ngModel)]="familleData.code" name="code">
-    </div>
-    <!-- Intitulé -->
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="intitule">
-        Intitulé
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="intitule" type="text" placeholder="Intitulé" [(ngModel)]="familleData.intitule" name="intitule">
-    </div>
-    <!-- Unité de vente -->
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="uniteVente">
-        Unité de vente
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-             id="uniteVente" type="text" placeholder="Unité de vente" [(ngModel)]="familleData.unite_de_vente" name="uniteVente">
-    </div>
-    <!-- Suivi de stock -->
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="suiviStock">
-        Suivi de stock
-      </label>
-      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="suiviStock" [(ngModel)]="familleData.suivi_stock" name="suiviStock">
-        <option value="" class="text-center text-gray-500">---Veuillez selectionner une famille---</option>
-        <option value="FIFO">FIFO</option>
-        <option value="LIFO">LIFO</option>
-        <option value="CMUP">CMUP</option>
-        <option value="SERIALISE">SERIALISE</option>
-      </select>
-    </div>
 
-    <!-- Bouton Ajouter -->
-    <div class="flex items-center justify-between">
-      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onSubmit()" type="submit">
-        Ajouter
-      </button>
+  <mat-tab-group>
+    <mat-tab label="Identification">
+      <ng-template matTabContent>
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <!-- Select Type -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="typeSelect">
+              Type
+            </label>
+            <select id="typeSelect" [(ngModel)]="selectedType" name="typeSelect"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <option value="details">Details</option>
+              <option value="total">Total</option>
+              <option value="centralisateur">Centralisateur</option>
+            </select>
+          </div>
 
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onSubmitQuit()" type="submit">
-        Ajouter et quitter
-      </button>
-    </div>
-  </form>
+          <!-- Code -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="code">
+              Code
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="code" type="text" placeholder="Code" [(ngModel)]="familleData.code" name="code" required>
+          </div>
+
+          <!-- Intitulé -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="intitule">
+              Intitulé
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="intitule" type="text" placeholder="Intitulé" [(ngModel)]="familleData.intitule" name="intitule" required>
+          </div>
+
+          <!-- Unité de vente -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="uniteVente">
+              Unité de vente
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="uniteVente" type="text" placeholder="Unité de vente" [(ngModel)]="familleData.unite_de_vente" name="uniteVente"
+                   [disabled]="isFieldDisabled()">
+          </div>
+
+          <!-- Suivi de stock -->
+          <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="suiviStock">
+              Suivi de stock
+            </label>
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="suiviStock" [(ngModel)]="familleData.suivi_stock" name="suiviStock" [disabled]="isFieldDisabled()">
+              <option value="" class="text-center text-gray-500">---Veuillez sélectionner une famille---</option>
+              <option value="FIFO">FIFO</option>
+              <option value="LIFO">LIFO</option>
+              <option value="CMUP">CMUP</option>
+              <option value="SERIALISE">SERIALISE</option>
+            </select>
+          </div>
+        </form>
+      </ng-template>
+    </mat-tab>
+
+
+    <mat-tab label="Tarif">
+      <ng-template matTabContent>
+        <mat-tab-group>
+
+
+          <mat-tab label="Fournisseur">
+            <ng-template matTabContent>
+              <div class="container mx-auto p-4">
+                <!-- Barre de recherche -->
+                <div class="mb-4 flex flex-col md:flex-row justify-between items-center mt-7">
+                  <div class="mb-2 md:mb-0">
+                    <button routerLink="/ajout-famille" class="border-2 border-green-500 hover:bg-green-500 hover:text-white text-green-500 font-bold py-2 px-4 rounded" (click)="openForm()">
+                      <i class="fas fa-plus mr-1"></i>
+                      Nouveau
+                    </button>
+                  </div>
+                  <div class="relative">
+                    <input type="text" placeholder="Rechercher..." class="border border-gray-300 rounded-md p-2 w-full md:w-72" >
+                    <i class="absolute right-3 top-3 fas fa-search text-gray-400"></i>
+                  </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-700">
+                      <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Fournisseur
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Intitulé
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Unité d'achat
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Conversion
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Remise
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Fournisseur 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Intitulé 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Unité d'achat 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Conversion 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Remise 1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Fournisseur 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Intitulé 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Unité d'achat 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Conversion 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Remise 2
+                        </td>
+                      </tr>
+                      <!-- Ajoutez d'autres lignes ici selon vos besoins -->
+                    </tbody>
+                  </table>
+                </div>
+
+                </div>
+            </ng-template>
+          </mat-tab>
+
+
+          <mat-tab label="Catégorie tarifaire">
+            <ng-template matTabContent>
+              <div class="container mx-auto p-4">
+                <!-- Barre de recherche -->
+                <div class="mb-4 flex flex-col md:flex-row justify-between items-center mt-7">
+                  <div class="mb-2 md:mb-0">
+                    <button routerLink="/ajout-famille" class="border-2 border-green-500 hover:bg-green-500 hover:text-white text-green-500 font-bold py-2 px-4 rounded">
+                      <i class="fas fa-plus mr-1"></i>
+                      Nouveau
+                    </button>
+                  </div>
+                  <div class="relative">
+                    <input type="text" placeholder="Rechercher..." class="border border-gray-300 rounded-md p-2 w-full md:w-72" >
+                    <i class="absolute right-3 top-3 fas fa-search text-gray-400"></i>
+                  </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-700">
+                      <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Fournisseur
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Intitulé
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Unité d'achat
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Conversion
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Remise
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Fournisseur 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Intitulé 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Unité d'achat 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Conversion 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Remise 1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Fournisseur 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Intitulé 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Unité d'achat 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Conversion 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Remise 2
+                        </td>
+                      </tr>
+                      <!-- Ajoutez d'autres lignes ici selon vos besoins -->
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Remise par client">
+            <ng-template matTabContent>
+              <div class="container mx-auto p-4">
+                <!-- Barre de recherche -->
+                <div class="mb-4 flex flex-col md:flex-row justify-between items-center mt-7">
+                  <div class="mb-2 md:mb-0">
+                    <button routerLink="/ajout-famille" class="border-2 border-green-500 hover:bg-green-500 hover:text-white text-green-500 font-bold py-2 px-4 rounded">
+                      <i class="fas fa-plus mr-1"></i>
+                      Nouveau
+                    </button>
+                  </div>
+                  <div class="relative">
+                    <input type="text" placeholder="Rechercher..." class="border border-gray-300 rounded-md p-2 w-full md:w-72" >
+                    <i class="absolute right-3 top-3 fas fa-search text-gray-400"></i>
+                  </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-700">
+                      <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Fournisseur
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Intitulé
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Unité d'achat
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Conversion
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Remise
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Fournisseur 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Intitulé 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Unité d'achat 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Conversion 1
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Remise 1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Fournisseur 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Intitulé 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Unité d'achat 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Conversion 2
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          Remise 2
+                        </td>
+                      </tr>
+                      <!-- Ajoutez d'autres lignes ici selon vos besoins -->
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Champs libres">
+      <ng-template matTabContent>
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <!-- Champ libre 1 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="champLibre1">
+              Champ libre 1
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="champLibre1" type="text" placeholder="Champ libre 1"  name="champLibre1">
+          </div>
+
+          <!-- Champ libre 2 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="champLibre2">
+              Champ libre 2
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="champLibre2" type="text" placeholder="Champ libre 2"  name="champLibre2">
+          </div>
+        </form>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Paramètres">
+      <ng-template matTabContent>
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <!-- Paramètre 1 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="parametre1">
+              Paramètre 1
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="parametre1" type="text" placeholder="Paramètre 1" name="parametre1">
+          </div>
+
+          <!-- Paramètre 2 -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="parametre2">
+              Paramètre 2
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="parametre2" type="text" placeholder="Paramètre 2"  name="parametre2">
+          </div>
+        </form>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- Boutons fixes -->
+  <div class="flex items-center justify-between mt-4">
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onSubmit()" type="button">
+      Ajouter
+    </button>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onSubmitQuit()" type="button">
+      Ajouter et quitter
+    </button>
+  </div>
 </div>
