@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { FournisseurFormComponent } from '../../Fournisseurs/form-fournisseur/fournisseur-form/fournisseur-form.component';
+import { FormRemiseComponent } from '../formRemise/form-remise/form-remise.component';
 
 
 
@@ -44,6 +45,17 @@ export class AjoutFamilleComponent {
 
   openForm(){
     const dialogRef = this.dialog.open(FournisseurFormComponent, {
+      width: '500px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Vous pouvez effectuer des actions après la fermeture du popup si nécessaire
+    });
+  }
+
+  openForm2(){
+    const dialogRef = this.dialog.open(FormRemiseComponent, {
       width: '500px',
       data: {}
     });

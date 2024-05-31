@@ -38,7 +38,7 @@ export class EditClientComponent {
   }
 
   getClientDetails(id: number): void {
-    this.http.get<any>('http://192.168.2.5:8000/api/client/find/' + id).subscribe(
+    this.http.get<any>('http://192.168.2.27:8000/api/client/find/' + id).subscribe(
       (response) => {
         this.client = response;
       },

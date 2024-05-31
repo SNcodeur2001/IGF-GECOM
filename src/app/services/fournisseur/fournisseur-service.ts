@@ -34,10 +34,10 @@ export class FournisseurService {
   }
 
   updateFournisseur(fournisseurId: number, fournisseur: any): Observable<any> {
-    return this.http.put(`http://192.168.2.33:8000/api/fournisseur/update/${fournisseurId}`, fournisseur);
+    return this.http.put(`http://192.168.2.5:8000/api/fournisseur/update/${fournisseurId}`, fournisseur);
   }
 
   createFournisseur(data: any) {
-    return this.http.post('http://192.168.2.33:8000/api/fournisseur/create', data);
+    return this.http.post('http://192.168.2.5:8000/api/fournisseur/create', data);
   }
 }
